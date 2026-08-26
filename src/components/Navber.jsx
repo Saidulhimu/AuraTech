@@ -4,7 +4,7 @@ const Navber = () => {
   return (
     <div className="sticky top-0 z-50 bg-base-100/90 backdrop-blur-md border-b border-base-200 shadow-sm w-full py-2">
       <div className="w-full px-4 md:px-12 mx-auto flex items-center justify-between">
-        
+
         {/* 1. Left Side: Brand Logo & Mobile Menu */}
         <div className="flex items-center gap-3">
           {/* Mobile Responsive Dropdown */}
@@ -33,17 +33,17 @@ const Navber = () => {
         <div className="hidden lg:flex items-center">
           <ul className="flex items-center gap-8 text-base font-medium">
             <li>
-              <NavLink 
-                to="/" 
+              <NavLink
+                to="/"
                 className={({ isActive }) => isActive ? 'font-bold text-indigo-500' : 'hover:text-indigo-400 transition-colors'}
               >
                 Home
               </NavLink>
             </li>
-            
+
             <li>
-              <NavLink 
-                to="/products" 
+              <NavLink
+                to="/products"
                 className={({ isActive }) => isActive ? 'font-bold text-indigo-500' : 'hover:text-indigo-400 transition-colors'}
               >
                 Products
@@ -51,8 +51,8 @@ const Navber = () => {
             </li>
 
             <li>
-              <NavLink 
-                to="/contact" 
+              <NavLink
+                to="/contact"
                 className={({ isActive }) => isActive ? 'font-bold text-indigo-500' : 'hover:text-indigo-400 transition-colors'}
               >
                 Contact
@@ -60,8 +60,8 @@ const Navber = () => {
             </li>
 
             <li>
-              <NavLink 
-                to="/about" 
+              <NavLink
+                to="/about"
                 className={({ isActive }) => isActive ? 'font-bold text-indigo-500' : 'hover:text-indigo-400 transition-colors'}
               >
                 About Us
@@ -94,8 +94,8 @@ const Navber = () => {
             </div>
 
             {/* Static Login Button */}
-            <Link 
-              to="/login" 
+            <Link
+              to="/login"
               className="hidden sm:inline-block px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-500 border border-indigo-500/30 transition-all"
             >
               Login

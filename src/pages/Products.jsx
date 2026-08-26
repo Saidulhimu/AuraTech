@@ -236,9 +236,8 @@ const Products = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Sidebar Filters */}
         <aside
-          className={`${
-            showFilterMobile ? "block" : "hidden"
-          } lg:block bg-slate-900/80 border border-slate-800/80 backdrop-blur-md p-6 rounded-2xl h-fit space-y-6 sticky top-24 z-10`}
+          className={`${showFilterMobile ? "block" : "hidden"
+            } lg:block bg-slate-900/80 border border-slate-800/80 backdrop-blur-md p-6 rounded-2xl h-fit space-y-6 sticky top-24 z-10`}
         >
           <div>
             <h3 className="text-slate-100 font-bold text-sm tracking-wide uppercase mb-4 border-b border-slate-800 pb-2">
@@ -249,11 +248,10 @@ const Products = () => {
                 <li key={cat}>
                   <button
                     onClick={() => setSelectedCategory(cat)}
-                    className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition-all flex items-center justify-between ${
-                      selectedCategory === cat
-                        ? "bg-indigo-600/20 text-indigo-400 border border-indigo-500/30"
-                        : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
-                    }`}
+                    className={`w-full text-left px-3 py-2 rounded-xl text-sm font-medium transition-all flex items-center justify-between ${selectedCategory === cat
+                      ? "bg-indigo-600/20 text-indigo-400 border border-indigo-500/30"
+                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/50"
+                      }`}
                   >
                     <span>{cat}</span>
                     {selectedCategory === cat && (
