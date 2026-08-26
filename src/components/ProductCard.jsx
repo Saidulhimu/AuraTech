@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="group bg-base-100 border border-base-200 hover:border-indigo-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col justify-between">
-      
+
       {/* Image Container */}
       <div className="relative overflow-hidden bg-base-200 h-52 flex items-center justify-center p-4">
         <img
@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
           alt={title}
           className="max-h-full object-contain group-hover:scale-110 transition-transform duration-500"
         />
-        
+
         {/* Category Tag */}
         <span className="absolute top-3 left-3 bg-base-300/80 backdrop-blur-md text-xs font-semibold px-3 py-1 rounded-full border border-white/10">
           {category}
@@ -50,8 +50,8 @@ const ProductCard = ({ product }) => {
             <span className="text-xl font-extrabold text-indigo-400">{price}</span>
           </div>
 
-          <button className="btn btn-primary btn-sm rounded-lg px-4 font-semibold hover:scale-105 transition-transform ">
-            Buy Now
+          <button className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white font-semibold rounded-xl text-xs transition-all shadow-md shadow-indigo-600/20">
+            Add to Cart
           </button>
         </div>
       </div>

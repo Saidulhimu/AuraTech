@@ -2,38 +2,45 @@ import ProductCard from '../ProductCard';
 
 const productsData = [
   {
-    id: 1,
-    title: 'Wireless Noise Canceling Headphones',
-    category: 'Accessories',
-    price: '$299',
-    rating: '4.8',
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop',
+    id: 11,
+    name: "Amazfit GTR 4 Smart Fitness Watch",
+    price: 18500,
+    category: "Wearables",
+    tag: "Value Choice",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80",
+  },
+
+  // Accessories
+  {
+    id: 12,
+    name: "Logitech MX Master 3S Wireless Mouse",
+    price: 11200,
+    category: "Accessories",
+    tag: "Pro Choice",
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: 2,
-    name: 'Smart Watch Series 8', // support both title/name if needed
-    title: 'Smart Watch Series 8 Ultra',
-    category: 'Wearables',
-    price: '$399',
-    rating: '4.9',
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop',
+    id: 13,
+    name: "Keychron K2 V2 Wireless Mechanical Keyboard",
+    price: 9800,
+    category: "Accessories",
+    tag: "Best Seller",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
   },
   {
-    id: 3,
-    title: 'Mechanical RGB Gaming Keyboard',
-    category: 'Accessories',
-    price: '$149',
-    rating: '4.7',
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=600&auto=format&fit=crop',
+    id: 14,
+    name: "Aluminum Ergonomic Laptop Stand",
+    price: 3450,
+    category: "Accessories",
+    tag: "Popular",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
   },
-  {
-    id: 4,
-    title: 'Ergonomic Wireless Gaming Mouse',
-    category: 'Peripherals',
-    price: '$89',
-    rating: '4.6',
-    image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=600&auto=format&fit=crop',
-  },
+
+
 ];
 
 const FeatureProducts = () => {
