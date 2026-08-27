@@ -87,7 +87,7 @@ const Navber = () => {
             {/* Avatar Placeholder */}
             <div className="w-9 h-9 rounded-full ring-2 ring-indigo-500/50 p-0.5 cursor-pointer hover:scale-105 transition-transform">
               <img
-                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Himu"
+                src="./avatar.jpg"
                 alt="User Avatar"
                 className="w-full h-full rounded-full bg-base-200"
               />
