@@ -3,7 +3,7 @@ const Review = ({ review }) => {
 
   return (
     <div className="relative group bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-2xl p-6 shadow-lg hover:border-purple-500/40 hover:shadow-purple-500/10 transition-all duration-300 flex flex-col justify-between">
-      
+
       {/* Background Subtle Glow on Hover */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
@@ -15,17 +15,16 @@ const Review = ({ review }) => {
               <input
                 key={i}
                 type="radio"
-                className={`mask mask-star-2 ${
-                  i < rating ? 'bg-amber-400' : 'bg-slate-700'
-                }`}
+                className={`mask mask-star-2 ${i < rating ? 'bg-amber-400' : 'bg-slate-700'
+                  }`}
                 readOnly
                 checked={i < rating}
               />
             ))}
           </div>
-          {/* Decorative Quote Icon */}
-          <span className="text-3xl text-purple-500/30 font-serif leading-none select-none">
-            “
+          {/* Rating */}
+          <span className="absolute top-3 right-3 bg-slate-900/90 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md border border-slate-800">
+            ★ {rating}
           </span>
         </div>
 
@@ -46,9 +45,9 @@ const Review = ({ review }) => {
       <div className="flex items-center gap-3 pt-4 border-t border-slate-800/80">
         <div className="avatar">
           <div className="w-10 h-10 rounded-full ring-2 ring-purple-500/40 p-[1px]">
-            <img 
-              src={avatar} 
-              alt={name} 
+            <img
+              src={avatar}
+              alt={name}
               className="rounded-full object-cover"
             />
           </div>

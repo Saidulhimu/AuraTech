@@ -1,6 +1,15 @@
 import ProductCard from '../ProductCard';
 
 const productsData = [
+    {
+    id: 2,
+    name: "Samsung Galaxy S24 Ultra",
+    price: 142999,
+    category: "Smartphones",
+    tag: "Hot",
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80",
+  },
   {
     id: 11,
     name: "Amazfit GTR 4 Smart Fitness Watch",
@@ -37,6 +46,17 @@ const productsData = [
     rating: 4.6,
     image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
   },
+
+  {
+    id: 16,
+    name: "Baseus 100W GaN Fast Wall Charger",
+    price: 4200,
+    category: "Power & Cables",
+    tag: "Hot",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80",
+  },
+
 ];
 
 const FeatureProducts = () => {
@@ -44,9 +64,6 @@ const FeatureProducts = () => {
     <section className="w-full my-16 max-w-[1440px] px-6 md:px-12 mx-auto">
       {/* Header Section */}
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <span className="text-indigo-400 font-semibold text-xs tracking-widest uppercase bg-indigo-500/10 px-3.5 py-1.5 rounded-full border border-indigo-500/20">
-          Handpicked Gadgets
-        </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-3">
           Featured <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Products</span>
         </h2>

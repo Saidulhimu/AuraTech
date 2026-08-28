@@ -14,25 +14,23 @@ import {
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider(); // কম্পোনেন্টের বাইরে রাখা ভালো
+const googleProvider = new GoogleAuthProvider(); 
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ১. সাইন-আপ (Create User)
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // ২. ইমেইল/পাসওয়ার্ড দিয়ে লগইন (loginUser & Login দুটি নামই রাখা হয়েছে যেন কোথাও ভুল না হয়)
   const loginUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  // ৩. গুগল লগইন (googleLogin & GoogleLogin দুটি নামই ব্যাকওয়ার্ড সাপোর্টের জন্য রাখা হলো)
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
