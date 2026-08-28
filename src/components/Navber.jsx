@@ -1,6 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../hooks/useAuth'; 
+import UserDropdown from './home/UserDropdown';
+
 
 const Navber = () => {
+  const { user } = useAuth();
+
   return (
     <div className="sticky top-0 z-50 bg-base-100/90 backdrop-blur-md border-b border-base-200 shadow-sm w-full py-2">
       <div className="w-full px-4 md:px-12 mx-auto flex items-center justify-between">
@@ -70,8 +75,8 @@ const Navber = () => {
           </ul>
         </div>
 
-        {/* 3. Right Side: Cart & Static Auth/Avatar */}
-        <div className="flex items-center gap-4">
+        {/* 3. Right Side: Cart & Dynamic Auth State */}
+        <div className="flex items-center gap-5">
           {/* Cart Icon */}
           <div className="relative flex items-center justify-center p-2 rounded-full hover:bg-base-200 cursor-pointer transition-all">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-base-content" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -82,27 +87,35 @@ const Navber = () => {
             </span>
           </div>
 
-          {/* Static User Avatar & Auth Buttons */}
-          <div className="flex items-center gap-3 pl-2 border-l border-base-300">
-            {/* Avatar Placeholder */}
-            <div className="w-9 h-9 rounded-full ring-2 ring-indigo-500/50 p-0.5 cursor-pointer hover:scale-105 transition-transform">
-              <img
-                src="./avatar.jpg"
-                alt="User Avatar"
-                className="w-full h-full rounded-full bg-base-200"
-              />
+          {/* Conditional Rendering: User logged in OR logged out */}
+          {user ? (
+            <UserDropdown />
+          ) : (
+            <div className="flex items-center gap-2.5 pl-2 border-l border-base-300">
+              {/* User Icon */}
+              <div className="p-2 rounded-full bg-base-200/60 text-indigo-500">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+
+              {/* Text Layout (Matching Image) */}
+              <div className="flex flex-col text-xs leading-tight">
+                <span className="font-semibold text-slate-200 text-sm">Account</span>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <Link to="/register" className="text-indigo-400 hover:underline font-medium">
+                    Register
+                  </Link>
+                  <span className="text-slate-500">or</span>
+                  <Link to="/login" className="text-slate-300 hover:text-indigo-400 hover:underline font-medium">
+                    Login
+                  </Link>
+                </div>
+              </div>
             </div>
+          )}
 
-            {/* Static Login Button */}
-            <Link
-              to="/login"
-              className="hidden sm:inline-block px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-500 border border-indigo-500/30 transition-all"
-            >
-              Login
-            </Link>
-          </div>
         </div>
-
       </div>
     </div>
   );
