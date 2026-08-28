@@ -10,12 +10,10 @@ const productsData = [
     rating: 4.5,
     image: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=600&q=80",
   },
-
-  // Accessories
   {
     id: 12,
-    name: "Logitech MX Master 3S Wireless Mouse",
-    price: 11200,
+    name: "Logitech Master 3S Wireless Mouse",
+    price: 3200,
     category: "Accessories",
     tag: "Pro Choice",
     rating: 4.9,
@@ -23,8 +21,8 @@ const productsData = [
   },
   {
     id: 13,
-    name: "Keychron K2 V2 Wireless Mechanical Keyboard",
-    price: 9800,
+    name: "Keychron K2 Mechanical Keyboard",
+    price: 12500,
     category: "Accessories",
     tag: "Best Seller",
     rating: 4.8,
@@ -32,25 +30,29 @@ const productsData = [
   },
   {
     id: 14,
-    name: "Aluminum Ergonomic Laptop Stand",
+    name: "Generic 2.4G Wireless Optical Mouse",
     price: 3450,
     category: "Accessories",
     tag: "Popular",
     rating: 4.6,
     image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80",
   },
-
-
 ];
 
 const FeatureProducts = () => {
   return (
-    <div className="w-full text-center my-10 max-w-[1440px] px-6 md:px-12 mx-auto">
-      {/* Title */}
-      <div className="my-10 px-4">
-        <h2 className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-          Featured Products
+    <section className="w-full my-16 max-w-[1440px] px-6 md:px-12 mx-auto">
+      {/* Header Section */}
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <span className="text-indigo-400 font-semibold text-xs tracking-widest uppercase bg-indigo-500/10 px-3.5 py-1.5 rounded-full border border-indigo-500/20">
+          Handpicked Gadgets
+        </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-3">
+          Featured <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Products</span>
         </h2>
+        <p className="text-slate-400 text-xs sm:text-sm mt-3">
+          Explore our top-tier devices curated for seamless productivity and premium build quality.
+        </p>
       </div>
 
       {/* Grid List */}
@@ -59,7 +61,7 @@ const FeatureProducts = () => {
           <ProductCard key={item.id} product={item} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
