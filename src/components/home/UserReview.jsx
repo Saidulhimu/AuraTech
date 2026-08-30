@@ -43,6 +43,10 @@ const UserReview = () => {
     return (
         <section className="my-24 max-w-[1440px] px-6 md:px-12 mx-auto">
             <div className="text-center mb-14">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 text-xs font-bold uppercase tracking-widest backdrop-blur-md mb-4">
+                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                    Customers Feedback 
+                </span>
                 <h2 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent mt-3">
                     What Our Customers Say
                 </h2>

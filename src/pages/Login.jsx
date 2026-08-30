@@ -67,7 +67,7 @@ const Login = () => {
           <div className="relative z-10 my-auto py-4">
             <div className="relative w-full h-48 sm:h-52 mb-6 rounded-2xl overflow-hidden border border-slate-800/80 group shadow-xl bg-slate-950">
               <img
-                src="./logo.jpg"
+                src="/logo.jpg"
                 alt="AuraTech Logo Banner"
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
               />

@@ -63,7 +63,9 @@ const FeatureProducts = () => {
   return (
     <section className="w-full my-16 max-w-[1440px] px-6 md:px-12 mx-auto">
       {/* Header Section */}
+
       <div className="text-center max-w-2xl mx-auto mb-12">
+        
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mt-3">
           Featured <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Products</span>
         </h2>
