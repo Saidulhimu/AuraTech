@@ -119,12 +119,12 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Gmail Address
+                  E-Mail Address
                 </label>
                 <div className="relative">
                   <input
                     type="email"
-                    placeholder="himu@example.com"
+                    placeholder="Enter your E-Mail"
                     {...register('email', { required: 'Email is required' })}
                     className="w-full bg-slate-950/90 border border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none transition-all pl-10"
                   />

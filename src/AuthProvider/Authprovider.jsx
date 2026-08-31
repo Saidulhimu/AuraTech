@@ -10,16 +10,16 @@ import {
   onAuthStateChanged,
   updateProfile,
 } from "firebase/auth";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider(); 
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -36,25 +36,42 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // ৪. লগআউট
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
 
-  // ৫. প্রোফাইল আপডেট
   const updateUserProfile = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photoURL,
+    }).then(() => {
+      setUser({ ...auth.currentUser });
     });
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
-      console.log("Current User:", currentUser);
+      if (currentUser) {
+        axios
+          .post(`http://localhost:4000/authentication`, {
+            email: currentUser.email,
+          })
+          .then((data) => {
+            if (data?.data?.token) {
+              localStorage.setItem("access-token", data.data.token);
+              setLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.error("JWT Error:", error);
+            setLoading(false);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
 
     return () => unsubscribe();
@@ -66,7 +83,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     createUser,
     loginUser,
-    Login: loginUser, 
+    Login: loginUser,
     googleLogin,
     GoogleLogin: googleLogin,
     logOut,

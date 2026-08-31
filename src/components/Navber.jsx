@@ -2,8 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../hooks/useAuth'; 
 import UserDropdown from './home/UserDropdown';
 
-
-const Navber = () => {
+const Navbar = () => {
   const { user } = useAuth();
 
   return (
@@ -87,19 +86,17 @@ const Navber = () => {
             </span>
           </div>
 
-          {/* Conditional Rendering: User logged in OR logged out */}
+          {/* Conditional Rendering */}
           {user ? (
             <UserDropdown />
           ) : (
             <div className="flex items-center gap-2.5 pl-2 border-l border-base-300">
-              {/* User Icon */}
               <div className="p-2 rounded-full bg-base-200/60 text-indigo-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
 
-              {/* Text Layout (Matching Image) */}
               <div className="flex flex-col text-xs leading-tight">
                 <span className="font-semibold text-slate-200 text-sm">Account</span>
                 <div className="flex items-center gap-1 mt-0.5">
@@ -121,4 +118,4 @@ const Navber = () => {
   );
 };
 
-export default Navber;
+export default Navbar;

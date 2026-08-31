@@ -12,6 +12,9 @@ const UserDropdown = () => {
       .catch((err) => console.error(err));
   };
 
+
+  const userInitial = user?.displayName ? user.displayName.slice(0, 2).toUpperCase() : "US";
+
   return (
     <div className="dropdown dropdown-end z-50">
       {/* Avatar Button */}
@@ -20,12 +23,19 @@ const UserDropdown = () => {
         role="button"
         className="btn btn-ghost btn-circle avatar hover:scale-105 transition-transform"
       >
-        <div className="w-10 h-10 rounded-full ring-2 ring-indigo-500/50 p-0.5">
-          <img
-            src={user?.photoURL || "./avatar.jpg"}
-            alt={user?.displayName || "Aura Tech User"}
-            className="rounded-full object-cover w-full h-full"
-          />
+        <div className="w-10 h-10 rounded-full ring-2 ring-indigo-500/50 p-0.5 overflow-hidden flex items-center justify-center bg-indigo-600">
+          {user?.photoURL ? (
+            <img
+              src={user.photoURL}
+              alt={user?.displayName || "Aura Tech User"}
+              referrerPolicy="no-referrer" 
+              className="rounded-full object-cover w-full h-full"
+            />
+          ) : (
+            <span className="text-white font-bold text-sm tracking-wider">
+              {userInitial}
+            </span>
+          )}
         </div>
       </div>
 
