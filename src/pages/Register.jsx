@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 import GoogleLogin from '../components/login-registration/googleLogin';
 
@@ -39,12 +40,31 @@ const Register = () => {
     setError('');
     setLoading(true);
 
+    const email = data.email;
+    const role = data.role;
+    const status = role === 'buyer' ? 'approved' : 'pending';
+    const wishlist = [];
+
+    const userData = { email, role, status, wishlist };
+
+    // 1. Firebase Authentication
     createUser(data.email, data.password)
       .then(() => {
         updateUserProfile(data.name)
           .then(() => {
-            setLoading(false);
-            navigate('/');
+            // 2. Post User Data to Backend Database
+            axios
+              .post('http://localhost:4000/users', userData)
+              .then((res) => {
+                if (res.data.insertedId || res.data.message) {
+                  setLoading(false);
+                  navigate('/');
+                }
+              })
+              .catch((err) => {
+                setError('Failed to save user info to database.');
+                setLoading(false);
+              });
           })
           .catch((err) => {
             setError(getErrorMessage(err.code));
@@ -60,7 +80,7 @@ const Register = () => {
   return (
     <div className="min-h-[90vh] flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-slate-900/90 border border-slate-800 shadow-2xl shadow-indigo-500/10 backdrop-blur-2xl transition-all duration-500">
-        
+
         {/* LEFT SIDE: AuraTech Showcase */}
         <div className="relative hidden lg:flex flex-col justify-between p-10 bg-gradient-to-br from-purple-950/80 via-slate-900 to-slate-950 border-r border-slate-800 overflow-hidden">
           <div className="absolute top-0 left-0 -translate-x-12 -translate-y-12 w-64 h-64 bg-purple-600/15 rounded-full blur-3xl"></div>
@@ -140,6 +160,38 @@ const Register = () => {
                 />
                 {errors.email && (
                   <p className="text-rose-400 text-xs mt-1">Email is required</p>
+                )}
+              </div>
+
+              {/* ROLE SELECT RADIO CARDS */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+                  Select Your Role 
+                </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <label className="relative flex flex-col p-3 cursor-pointer rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30 transition-all">
+                    <input
+                      type="radio"
+                      value="buyer"
+                      defaultChecked
+                      {...register('role', { required: true })}
+                      className="sr-only"
+                    />
+                    <span className="text-xs font-bold text-slate-200">🛒 Buyer</span>
+                  </label>
+
+                  <label className="relative flex flex-col p-3 cursor-pointer rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30 transition-all">
+                    <input
+                      type="radio"
+                      value="seller"
+                      {...register('role', { required: true })}
+                      className="sr-only"
+                    />
+                    <span className="text-xs font-bold text-slate-200">🏪 Seller</span>
+                  </label>
+                </div>
+                {errors.role && (
+                  <p className="text-rose-400 text-xs mt-1">Please select a role</p>
                 )}
               </div>
 
