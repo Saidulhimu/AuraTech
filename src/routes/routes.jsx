@@ -6,6 +6,8 @@ import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import DashboardLayout from "../layouts/DashboardLayout";
+import PrivateRoute from "./private/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +39,19 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    // ড্যাশবোর্ড লেআউটকে প্রাইভেট রুট দিয়ে মোড়ানো হলো
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
+    // আপনি যখন Dashboard.jsx ফাইলটি তৈরি করবেন, তখন নিচের অংশটি আনকমেন্ট করে ইমপোর্ট করে নেবেন
+    /*
+    children: [
+      {
+        path: "",
+        element: <Dashboard />, 
+      },
+    ],
+    */
   },
 ]);
