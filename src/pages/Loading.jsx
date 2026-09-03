@@ -5,9 +5,9 @@ const Loading = () => {
         <div className="min-h-screen min-w-screen flex justify-center items-center  ">
             <GridLoader
                 loading={true}
-                color="#854faa"
+                color="#5c2d7c"
                 cssOverride={{}}
-                size={150}
+                size={50}
                 speedMultiplier={1}
             />
         </div>
