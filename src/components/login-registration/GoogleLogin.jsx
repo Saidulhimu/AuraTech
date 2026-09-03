@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2'; 
 import useAuth from '../../hooks/useAuth';
 
 const GoogleLogin = ({ onSuccess, onError }) => {
@@ -8,11 +10,46 @@ const GoogleLogin = ({ onSuccess, onError }) => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        if (onSuccess) {
-          onSuccess(result);
-        } else {
-          navigate('/');
-        }
+        const user = result.user;
+
+        const userData = {
+          name: user.displayName || 'User',
+          email: user.email,
+          role: 'buyer', 
+          status: 'approved',
+          wishlist: [],
+        };
+
+        axios
+          .post('http://localhost:4000/users', userData)
+          .then(() => {
+            Swal.fire({
+              title: 'Login Successful!',
+              text: `Welcome ${user.displayName || ''}`,
+              icon: 'success',
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              background: '#0f172a',
+              color: '#f8fafc',
+              iconColor: '#8b5cf6',
+              customClass: {
+                popup: 'border border-slate-800 rounded-2xl shadow-2xl backdrop-blur-md',
+              },
+            });
+
+            if (onSuccess) {
+              onSuccess(result);
+            } else {
+              navigate('/');
+            }
+          })
+          .catch((err) => {
+            console.error('Failed to sync Google user with backend DB:', err);
+            navigate('/');
+          });
       })
       .catch((error) => {
         if (onError) {

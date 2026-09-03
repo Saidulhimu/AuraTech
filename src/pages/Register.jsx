@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2'; 
 import useAuth from '../hooks/useAuth';
 import GoogleLogin from '../components/login-registration/googleLogin';
 
@@ -40,12 +41,13 @@ const Register = () => {
     setError('');
     setLoading(true);
 
-    const email = data.email;
-    const role = data.role;
-    const status = role === 'buyer' ? 'approved' : 'pending';
-    const wishlist = [];
-
-    const userData = { email, role, status, wishlist };
+    const userData = {
+      name: data.name,
+      email: data.email,
+      role: data.role,
+      status: data.role === 'buyer' ? 'approved' : 'pending',
+      wishlist: [],
+    };
 
     // 1. Firebase Authentication
     createUser(data.email, data.password)
@@ -56,12 +58,30 @@ const Register = () => {
             axios
               .post('http://localhost:4000/users', userData)
               .then((res) => {
-                if (res.data.insertedId || res.data.message) {
-                  setLoading(false);
+                setLoading(false);
+                if (res.data.insertedId || res.data.message === 'User already exists') {
+                  Swal.fire({
+                    title: 'Registration Successful!',
+                    text: 'Welcome to AuraTech family',
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    background: '#0f172a',
+                    color: '#f8fafc',
+                    iconColor: '#8b5cf6',
+                    customClass: {
+                      popup: 'border border-slate-800 rounded-2xl shadow-2xl backdrop-blur-md',
+                    },
+                  });
+
                   navigate('/');
                 }
               })
               .catch((err) => {
+                console.error('Backend DB Error:', err);
                 setError('Failed to save user info to database.');
                 setLoading(false);
               });
@@ -166,7 +186,7 @@ const Register = () => {
               {/* ROLE SELECT RADIO CARDS */}
               <div>
                 <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Select Your Role 
+                  Select Your Role
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <label className="relative flex flex-col p-3 cursor-pointer rounded-xl border border-slate-800 bg-slate-950/60 hover:bg-slate-800/50 has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-950/30 transition-all">
@@ -279,7 +299,7 @@ const Register = () => {
             </div>
 
             {/* Reusable Google Login Component */}
-            <GoogleLogin onError={(err) => setError(getErrorMessage(err.code))} />
+            <GoogleLogin onError={(err) => setError(getErrorMessage(err?.code))} />
 
             <div className="text-center pt-2">
               <p className="text-xs text-slate-400">
